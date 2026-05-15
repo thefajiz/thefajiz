@@ -506,7 +506,7 @@ export default function Try() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -30 }}
                       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                      className="flex flex-col items-center gap-4 pb-8"
+                      className="flex flex-col items-center gap-4 pb-20"
                     >
                       <h2
                         className="text-lg md:text-xl neon-text-amber"
@@ -523,7 +523,7 @@ export default function Try() {
 
                       <button
                         onClick={handleShowLeaderboard}
-                        className="mt-2 px-6 py-3 text-sm font-bold rounded border-2 border-[#ff00ff] text-[#ff00ff] bg-transparent hover:bg-[#ff00ff] hover:text-white transition-all duration-200"
+                        className="mt-12 px-6 py-3 text-sm font-bold rounded border-2 border-[#ff00ff] text-[#ff00ff] bg-transparent hover:bg-[#ff00ff] hover:text-white transition-all duration-200"
                         style={{
                           fontFamily: "'Press Start 2P', monospace",
                           fontSize: "0.6rem",
