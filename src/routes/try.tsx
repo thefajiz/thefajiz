@@ -316,6 +316,22 @@ export default function Try() {
               gameState={gameState === "idle" ? "idle" : gameState === "leaderboard" ? "idle" : "playing"}
             />
 
+            {gameState === "results" && (
+              <div className="fixed top-20 right-4 z-50">
+                <button
+                  onClick={handleShowLeaderboard}
+                  className="px-4 py-2 font-bold rounded border-2 border-[#ff00ff] text-[#ff00ff] bg-[#0a0a0f] hover:bg-[#ff00ff] hover:text-white transition-all duration-200"
+                  style={{
+                    fontFamily: "'Press Start 2P', monospace",
+                    fontSize: "0.45rem",
+                    boxShadow: "0 0 10px #ff00ff, 0 0 20px #ff00ff40",
+                  }}
+                >
+                  VIEW LEADERBOARD
+                </button>
+              </div>
+            )}
+
             <main className="flex-1 relative overflow-hidden">
               {/* Background hero image */}
               <div
@@ -520,18 +536,6 @@ export default function Try() {
                         total={quizData.length}
                         show={gameState === "results"}
                       />
-
-                      <button
-                        onClick={handleShowLeaderboard}
-                        className="mt-12 px-6 py-3 text-sm font-bold rounded border-2 border-[#ff00ff] text-[#ff00ff] bg-transparent hover:bg-[#ff00ff] hover:text-white transition-all duration-200"
-                        style={{
-                          fontFamily: "'Press Start 2P', monospace",
-                          fontSize: "0.6rem",
-                          boxShadow: "0 0 10px #ff00ff, 0 0 20px #ff00ff40",
-                        }}
-                      >
-                        VIEW LEADERBOARD
-                      </button>
                     </motion.div>
                   )}
 
