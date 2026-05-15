@@ -506,7 +506,7 @@ export default function Try() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -30 }}
                       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                      className="flex flex-col items-center gap-8"
+                      className="flex flex-col items-center gap-8 pb-16"
                     >
                       <h2
                         className="text-lg md:text-xl neon-text-amber"
