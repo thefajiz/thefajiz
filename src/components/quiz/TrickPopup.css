@@ -1,0 +1,88 @@
+/* TrickPopup — Synthwave Arcade Cabinet theme */
+
+.trick-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 1rem;
+}
+
+.trick-popup-card {
+  background: #0d0520;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  max-width: 22rem;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+/* Scanline */
+.trick-popup-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 255, 255, 0.02) 2px,
+    rgba(0, 255, 255, 0.02) 3px
+  );
+  pointer-events: none;
+  border-radius: 0.5rem;
+}
+
+.trick-popup-emoji {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  animation: popup-bounce 0.5s ease-out;
+}
+
+@keyframes popup-bounce {
+  0% { transform: scale(0.3) rotate(-10deg); }
+  50% { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.trick-popup-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.trick-popup-message {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: #e0e0ff;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.trick-popup-btn {
+  padding: 0.5rem 1.5rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  font-weight: bold;
+  border-radius: 0.3rem;
+  border: 2px solid;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trick-popup-btn:hover {
+  background: currentColor;
+  color: #0a0015 !important;
+}
+
+.trick-popup-btn:active {
+  transform: scale(0.97);
+}

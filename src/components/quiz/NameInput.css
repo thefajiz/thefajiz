@@ -1,0 +1,188 @@
+/* NameInput — Synthwave Arcade Cabinet theme */
+
+.name-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.name-input-card {
+  background: #0d0520;
+  border: 2px solid #00ffff;
+  border-radius: 0.5rem;
+  padding: 2rem 2.5rem;
+  max-width: 24rem;
+  width: 100%;
+  box-shadow:
+    4px 4px 0 #ff00ff,
+    0 0 20px rgba(0, 255, 255, 0.2),
+    inset 0 0 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Scanline overlay */
+.name-input-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 255, 255, 0.03) 2px,
+    rgba(0, 255, 255, 0.03) 3px
+  );
+  pointer-events: none;
+  border-radius: 0.5rem;
+}
+
+.name-input-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.name-input-icon {
+  font-size: 2.5rem;
+  animation: float-icon 2s ease-in-out infinite;
+}
+
+@keyframes float-icon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.name-input-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.75rem;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.name-input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.name-input-field-wrapper {
+  position: relative;
+}
+
+.name-input-field {
+  width: 100%;
+  background: #0a0015;
+  border: 2px solid #00ffff40;
+  border-radius: 0.3rem;
+  padding: 0.8rem 1rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  color: #fbe54f;
+  text-shadow: 0 0 3px #fbe54f;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.name-input-field::placeholder {
+  color: #00ffff40;
+  text-shadow: none;
+}
+
+.name-input-field:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 10px #00ffff40, inset 0 0 5px #00ffff10;
+}
+
+.name-input-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #ff00ff;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 5px #ff00ff;
+}
+
+.name-input-field:focus ~ .name-input-underline {
+  width: 100%;
+}
+
+.name-input-error {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: #ff3333;
+  text-shadow: 0 0 5px #ff3333;
+  text-align: center;
+  animation: shake-error 0.3s ease;
+}
+
+@keyframes shake-error {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.name-input-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.name-input-btn {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  font-weight: bold;
+  border-radius: 0.3rem;
+  border: 2px solid;
+  background: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.name-input-btn-go {
+  border-color: #00ff99;
+  color: #00ff99;
+  box-shadow: 0 0 8px #00ff9940;
+}
+
+.name-input-btn-go:hover {
+  background: #00ff99;
+  color: #0a0015;
+  box-shadow: 0 0 15px #00ff99;
+}
+
+.name-input-btn-go:active {
+  transform: scale(0.97);
+}
+
+.name-input-btn-back {
+  border-color: #ff333380;
+  color: #ff3333;
+}
+
+.name-input-btn-back:hover {
+  background: #ff3333;
+  color: white;
+}
+
+.name-input-btn-back:active {
+  transform: scale(0.97);
+}
+
+.name-input-hint {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: #a0a0ff60;
+  text-align: center;
+  margin-top: 1rem;
+}

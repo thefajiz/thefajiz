@@ -1,0 +1,240 @@
+/* Leaderboard — Synthwave Arcade Cabinet theme */
+
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 32rem;
+}
+
+.leaderboard-card {
+  background: #0d0520;
+  border: 2px solid #00ffff;
+  border-radius: 0.5rem;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  box-shadow:
+    4px 4px 0 #ff00ff,
+    0 0 25px rgba(0, 255, 255, 0.2),
+    inset 0 0 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Scanline overlay */
+.leaderboard-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 255, 255, 0.02) 2px,
+    rgba(0, 255, 255, 0.02) 3px
+  );
+  pointer-events: none;
+  border-radius: 0.5rem;
+}
+
+.leaderboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #ff00ff40;
+}
+
+.leaderboard-trophy {
+  font-size: 1.5rem;
+  animation: trophy-bounce 2s ease-in-out infinite;
+}
+
+@keyframes trophy-bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-4px) rotate(-5deg); }
+  75% { transform: translateY(-4px) rotate(5deg); }
+}
+
+.leaderboard-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.8rem;
+  color: #fbe54f;
+  text-shadow: 0 0 5px #fbe54f, 0 0 10px #fbe54f;
+}
+
+.leaderboard-empty {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.leaderboard-empty p {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+.leaderboard-empty-sub {
+  margin-top: 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: #a0a0ff60 !important;
+  text-shadow: none !important;
+}
+
+.leaderboard-table-wrapper {
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #00ffff40 transparent;
+}
+
+.leaderboard-table-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+
+.leaderboard-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.leaderboard-table-wrapper::-webkit-scrollbar-thumb {
+  background: #00ffff40;
+  border-radius: 2px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+}
+
+.leaderboard-table thead th {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+  color: #ff00ff;
+  text-shadow: 0 0 3px #ff00ff;
+  padding: 0.5rem 0.4rem;
+  text-align: left;
+  border-bottom: 1px solid #ff00ff30;
+  position: sticky;
+  top: 0;
+  background: #0d0520;
+  z-index: 1;
+}
+
+.leaderboard-table thead th:nth-child(3),
+.leaderboard-table thead th:nth-child(4) {
+  text-align: center;
+}
+
+.leaderboard-row {
+  border-bottom: 1px solid #00ffff10;
+  transition: background-color 0.2s ease;
+}
+
+.leaderboard-row:hover {
+  background-color: rgba(0, 255, 255, 0.05);
+}
+
+.leaderboard-row.highlighted {
+  background-color: rgba(0, 255, 255, 0.1);
+  border: 1px solid #00ffff40;
+}
+
+.leaderboard-row.top-three {
+  font-weight: bold;
+}
+
+.leaderboard-rank {
+  padding: 0.6rem 0.4rem;
+  color: #fbe54f;
+  font-size: 0.85rem;
+  width: 3rem;
+}
+
+.leaderboard-name {
+  padding: 0.6rem 0.4rem;
+  color: #e0e0ff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.you-badge {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.35rem;
+  color: #0a0015;
+  background: #00ffff;
+  padding: 0.15rem 0.3rem;
+  border-radius: 2px;
+  box-shadow: 0 0 5px #00ffff;
+}
+
+.leaderboard-score {
+  padding: 0.6rem 0.4rem;
+  color: #00ffff;
+  text-align: center;
+}
+
+.leaderboard-grade {
+  padding: 0.6rem 0.4rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.leaderboard-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #00ffff20;
+}
+
+.lb-btn {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  font-weight: bold;
+  border-radius: 0.3rem;
+  border: 2px solid;
+  background: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.lb-btn-play {
+  border-color: #00ff99;
+  color: #00ff99;
+  box-shadow: 0 0 8px #00ff9940;
+}
+
+.lb-btn-play:hover {
+  background: #00ff99;
+  color: #0a0015;
+  box-shadow: 0 0 15px #00ff99;
+}
+
+.lb-btn-play:active {
+  transform: scale(0.97);
+}
+
+.lb-btn-close {
+  border-color: #00ffff80;
+  color: #00ffff;
+}
+
+.lb-btn-close:hover {
+  background: #00ffff;
+  color: #0a0015;
+}
+
+.lb-btn-close:active {
+  transform: scale(0.97);
+}

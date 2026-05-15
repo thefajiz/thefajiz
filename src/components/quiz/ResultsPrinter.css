@@ -1,0 +1,292 @@
+/* Results Printer — adapted from Uiverse.io by dexter-st */
+/* Restyled for synthwave arcade palette */
+
+.wrapper-synth {
+  --printer-color: #1a0a2e;
+  --printer-color-2: #2e0d3f;
+  --receipt-color: #0d0520;
+
+  font-size: 14px;
+  position: relative;
+  user-select: none;
+}
+
+.printer-synth {
+  width: 320px;
+  height: 80px;
+  border-radius: 0 0 8px 8px;
+  background-color: var(--printer-color);
+  border: 2px solid #00ffff;
+  box-shadow:
+    0 16px 32px 0px rgba(0, 255, 255, 0.1),
+    0 -30px 16px 0px rgba(0, 0, 0, 0.1),
+    0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.printer-synth::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  border-radius: 12px 12px 0 0;
+  border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+  box-shadow:
+    0 12px 16px -12px rgba(0, 255, 255, 0.2) inset,
+    0 -6px 16px -6px rgba(0, 0, 0, 0.3) inset;
+  box-sizing: border-box;
+  background-color: var(--printer-color);
+  z-index: 2;
+}
+
+.printer-synth::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  width: 260px;
+  height: 40px;
+  border-radius: 0 0 4px 4px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  background: linear-gradient(to top, var(--printer-color), 60%, var(--printer-color-2));
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.printer-display-synth {
+  z-index: 2;
+  display: flex;
+  padding: 6px 8px;
+  position: absolute;
+  top: -10px;
+  left: 30px;
+  width: 160px;
+  height: 32px;
+  background-color: #000;
+  background-image: linear-gradient(transparent 0, rgba(0, 255, 255, 0.05) 90%, transparent 100%);
+  background-size: 100% 8px;
+  background-repeat: no-repeat;
+  border: 3px solid #2e0d3f;
+  border-radius: 6px;
+  box-sizing: border-box;
+  box-shadow:
+    -1px -1px 2px 0 rgba(0, 255, 255, 0.3) inset,
+    1px 1px 5px 1px #000 inset,
+    0 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.8em;
+  color: #00ffff;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
+  align-items: center;
+}
+
+.printer-message-synth {
+  animation: blink-cursor 1s steps(1) infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.print-button-synth {
+  z-index: 2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  position: absolute;
+  top: -30px;
+  right: 0;
+  margin: 16px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 6px;
+  width: 48px;
+  height: 36px;
+  background-color: var(--printer-color);
+  box-shadow:
+    1px 1px 2px 0 rgba(0, 255, 255, 0.2) inset,
+    -1px -1px 2px 0 rgba(0, 0, 0, 0.2) inset,
+    0 2px 6px 0px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.print-button-synth:hover {
+  box-shadow:
+    2px 2px 2px 0 rgba(0, 255, 255, 0.3) inset,
+    -2px -2px 2px 0 rgba(0, 0, 0, 0.2) inset,
+    0 2px 10px 0px rgba(0, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.print-button-synth:active {
+  box-shadow:
+    2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset,
+    -2px -2px 2px 0 rgba(0, 255, 255, 0.3) inset;
+  transform: scale(0.95);
+}
+
+.receipt-wrapper-synth {
+  position: absolute;
+  top: 0;
+  left: 44px;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.1));
+  transform: translateY(-100%);
+  clip-path: inset(100% -100px -100px -100px);
+  transition: clip-path 0.5s;
+}
+
+.receipt-synth {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 16px;
+  width: 220px;
+  min-height: 160px;
+  font-size: 0.75em;
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  color: #00ffff;
+  background-color: var(--receipt-color);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow:
+    0 12px 12px 0 rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.receipt-synth::before,
+.receipt-synth::after {
+  --angle: 45deg;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(
+      calc(var(--angle) * -1),
+      var(--receipt-color) 4px,
+      transparent 0
+    ),
+    linear-gradient(var(--angle), var(--receipt-color) 4px, transparent 0);
+  background-position: 4px 0;
+  background-repeat: repeat-x;
+  background-size: 8px 8px;
+}
+
+.receipt-synth::before {
+  top: -8px;
+  background-position: 4px 0;
+}
+
+.receipt-synth::after {
+  bottom: -8px;
+  background-position: 0 100%;
+  --angle: 225deg;
+}
+
+.receipt-header-synth {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2em 0;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #fbe54f;
+  text-shadow: 0 0 5px #fbe54f;
+}
+
+.logo-synth {
+  font-size: 1.5em;
+}
+
+.receipt-subheader-synth {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2em 0;
+  border-bottom: 1px dashed rgba(0, 255, 255, 0.4);
+  color: #a0a0ff;
+}
+
+.receipt-table-synth {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  line-height: 1.8em;
+  width: 100%;
+}
+
+.receipt-table-synth th {
+  color: #ff00ff;
+  text-shadow: 0 0 3px #ff00ff;
+  border-bottom: 1px dashed rgba(255, 0, 255, 0.4);
+}
+
+.receipt-table-synth th:last-child,
+.receipt-table-synth td:last-child {
+  text-align: right;
+}
+
+.receipt-total-synth td {
+  border-top: 1px dashed rgba(0, 255, 255, 0.4);
+  font-weight: 600;
+  color: #fbe54f;
+  text-shadow: 0 0 5px #fbe54f;
+}
+
+.receipt-message-synth {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5em 0;
+  color: #00ff99;
+  font-weight: bold;
+}
+
+.letter-wrapper-synth {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.letter-synth {
+  display: inline-block;
+  opacity: 0;
+}
+
+/* Animation triggers when wrapper has .active class */
+.wrapper-synth.active .receipt-wrapper-synth {
+  animation:
+    print-synth 1.2s 1 forwards ease-in,
+    display-synth 0.4s 1 forwards cubic-bezier(0, 0.63, 0.96, 1.1);
+  animation-delay: 0s, 1.35s;
+}
+
+.wrapper-synth.active .printer-message-synth {
+  animation: none;
+  opacity: 1;
+}
+
+.wrapper-synth.active .letter-synth {
+  animation: show-text-synth 0.6s 1 forwards linear;
+}
+
+@keyframes print-synth {
+  100% {
+    transform: translateY(10%);
+    clip-path: inset(-20% -100px -100px -100px);
+  }
+}
+
+@keyframes display-synth {
+  30% { transform: translateY(22%) rotate3d(1, 0, 1, -5deg); }
+  70% { z-index: 5; }
+  100% { z-index: 5; transform: translateY(-40%) scale(1.2); }
+}
+
+@keyframes show-text-synth {
+  10%, 100% { opacity: 1; }
+}
