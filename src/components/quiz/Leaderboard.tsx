@@ -1,10 +1,12 @@
 /**
  * Leaderboard Component
  * Design: Synthwave Arcade Cabinet — neon-styled high score table
- * Persists scores in localStorage and auto-updates
+ * Persists scores in Supabase and auto-updates across all devices
  */
+
 import { motion } from "framer-motion";
 import "./Leaderboard.css";
+import { supabase } from "../../lib/supabase";
 
 export interface LeaderboardEntry {
   name: string;
@@ -13,30 +15,27 @@ export interface LeaderboardEntry {
   date: string;
 }
 
-const STORAGE_KEY = "quiz-leaderboard";
+export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
+  const { data, error } = await supabase
+    .from("leaderboard")
+    .select("*")
+    .order("score", { ascending: false })
+    .limit(20);
 
-export function getLeaderboard(): LeaderboardEntry[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    return JSON.parse(raw) as LeaderboardEntry[];
-  } catch {
+  if (error) {
+    console.error("Error fetching leaderboard:", error);
     return [];
   }
+  return data as LeaderboardEntry[];
 }
 
-export function saveToLeaderboard(entry: LeaderboardEntry): LeaderboardEntry[] {
-  const entries = getLeaderboard();
-  entries.push(entry);
-  // Sort by score descending, then by date ascending (earlier = better)
-  entries.sort((a, b) => {
-    if (b.score !== a.score) return b.score - a.score;
-    return new Date(a.date).getTime() - new Date(b.date).getTime();
-  });
-  // Keep top 20
-  const trimmed = entries.slice(0, 20);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
-  return trimmed;
+export async function saveToLeaderboard(entry: LeaderboardEntry): Promise<LeaderboardEntry[]> {
+  const { error } = await supabase.from("leaderboard").insert(entry);
+
+  if (error) {
+    console.error("Error saving to leaderboard:", error);
+  }
+  return getLeaderboard();
 }
 
 interface LeaderboardProps {
@@ -101,7 +100,10 @@ export default function Leaderboard({
               <tbody>
                 {entries.map((entry, idx) => {
                   const { grade, color } = getGrade(entry.score, entry.total);
-                  const isHighlighted = highlightName && entry.name === highlightName && idx === entries.findIndex(e => e.name === highlightName);
+                  const isHighlighted =
+                    highlightName &&
+                    entry.name === highlightName &&
+                    idx === entries.findIndex((e) => e.name === highlightName);
                   return (
                     <motion.tr
                       key={`${entry.name}-${entry.date}-${idx}`}
@@ -117,8 +119,13 @@ export default function Leaderboard({
                         {entry.name}
                         {isHighlighted && <span className="you-badge">YOU</span>}
                       </td>
-                      <td className="leaderboard-score">{entry.score}/{entry.total}</td>
-                      <td className="leaderboard-grade" style={{ color, textShadow: `0 0 5px ${color}` }}>
+                      <td className="leaderboard-score">
+                        {entry.score}/{entry.total}
+                      </td>
+                      <td
+                        className="leaderboard-grade"
+                        style={{ color, textShadow: `0 0 5px ${color}` }}
+                      >
                         {grade}
                       </td>
                     </motion.tr>
