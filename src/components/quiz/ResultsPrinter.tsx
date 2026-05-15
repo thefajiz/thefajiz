@@ -21,6 +21,32 @@ export default function ResultsPrinter({ score, total, show }: ResultsPrinterPro
       setTimeout(() => {
         buttonRef.current?.focus();
       }, 300);
+
+      // Printer sound
+      const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const duration = 1.2;
+      const bufferSize = ctx.sampleRate * duration;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+
+      for (let i = 0; i < bufferSize; i++) {
+        // Buzzy dot-matrix rattle
+        data[i] = (Math.random() * 2 - 1) * 0.15 * Math.sin(i / 8);
+      }
+
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+
+      // Add a bandpass filter to make it sound more mechanical
+      const filter = ctx.createBiquadFilter();
+      filter.type = "bandpass";
+      filter.frequency.value = 800;
+      filter.Q.value = 0.8;
+
+      source.connect(filter);
+      filter.connect(ctx.destination);
+      source.start();
+      source.stop(ctx.currentTime + duration);
     }
   }, [show]);
 
