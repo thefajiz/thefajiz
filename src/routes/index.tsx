@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Star } from "@/components/Ornament";
 import { HeroArt, ArchwayArt } from "@/components/HeroArt";
+import DepthGlobe from "@/components/DepthGlobe";
 import { SocialRail } from "@/components/SocialRail";
 import { TornEdge } from "@/components/TornEdge";
 import { VOrnament } from "@/components/VOrnament";
@@ -91,8 +92,8 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative z-10 flex justify-center md:justify-end">
-          <HeroArt />
+        <div className="relative z-10 flex justify-center md:justify-end -mt-24 md:-mt-36">
+          <DepthGlobe size={560} />
         </div>
       </section>
 
