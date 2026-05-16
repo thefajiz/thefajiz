@@ -317,7 +317,7 @@ export default function Try() {
             />
 
             {gameState === "results" && (
-              <div className="fixed top-20 right-4 z-50">
+              <div className="fixed top-20 right-4 z-50 flex flex-col gap-2">
                 <button
                   onClick={handleShowLeaderboard}
                   className="px-4 py-2 font-bold rounded border-2 border-[#ff00ff] text-[#ff00ff] bg-[#0a0a0f] hover:bg-[#ff00ff] hover:text-white transition-all duration-200"
@@ -328,6 +328,17 @@ export default function Try() {
                   }}
                 >
                   VIEW LEADERBOARD
+                </button>
+                <button
+                  onClick={resetGame}
+                  className="px-4 py-2 font-bold rounded border-2 border-[#00ffff] text-[#00ffff] bg-[#0a0a0f] hover:bg-[#00ffff] hover:text-[#0a0015] transition-all duration-200"
+                  style={{
+                    fontFamily: "'Press Start 2P', monospace",
+                    fontSize: "0.45rem",
+                    boxShadow: "0 0 10px #00ffff40",
+                  }}
+                >
+                  HOME
                 </button>
               </div>
             )}
