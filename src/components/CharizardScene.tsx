@@ -54,9 +54,11 @@ export default function CharizardScene() {
         style={{ background: 'transparent' }}
         frameloop="always"
       >
-        <ambientLight intensity={0.4} />
-        <pointLight position={[2, 4, 3]} intensity={2} color="#ff7700" />
-        <pointLight position={[-3, 1, -2]} intensity={0.8} color="#ff4400" />
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[10, 10, 10]} intensity={1.8} color="#ff5500" />
+        <directionalLight position={[-10, 10, 10]} intensity={1.2} color="#ff3300" />
+        <pointLight position={[2, 4, 3]} intensity={5} decay={0} color="#ff4400" />
+        <pointLight position={[-3, 1, -2]} intensity={4} decay={0} color="#ff2200" />
         <Suspense fallback={null}>
           <Charizard />
         </Suspense>

@@ -294,17 +294,17 @@
 
 .neon-text-cyan {
   color: #00ffff !important;
-  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff80;
+  text-shadow: 0 0 2px #00ffff, 0 0 8px rgba(0, 255, 255, 0.4);
 }
 
 .neon-text-magenta {
   color: #ff00ff !important;
-  text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff80;
+  text-shadow: 0 0 2px #ff00ff, 0 0 8px rgba(255, 0, 255, 0.4);
 }
 
 .neon-text-amber {
   color: #fbe54f !important;
-  text-shadow: 0 0 5px #fbe54f, 0 0 10px #fbe54f, 0 0 20px #fbe54f80;
+  text-shadow: 0 0 2px #fbe54f, 0 0 8px rgba(251, 229, 79, 0.4);
 }
 
 /* ===== Neon border pulse ===== */
