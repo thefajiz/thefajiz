@@ -10,6 +10,23 @@ function Charizard() {
   const t = useRef(0)
 
   useEffect(() => {
+    scene.traverse((child: any) => {
+      if (child.isMesh && child.material) {
+        const wasArray = Array.isArray(child.material)
+        const mats = wasArray ? child.material : [child.material]
+        const basics = mats.map((mat: any) => new THREE.MeshBasicMaterial({
+          map: mat.map ?? null,
+          color: mat.map ? 0xffffff : (mat.color ?? new THREE.Color(0xffffff)),
+          transparent: mat.transparent ?? false,
+          alphaMap: mat.alphaMap ?? null,
+          side: mat.side ?? THREE.FrontSide,
+        }))
+        child.material = wasArray ? basics : basics[0]
+      }
+    })
+  }, [scene])
+
+  useEffect(() => {
     if (actions && animations.length > 0) {
       const firstAction = actions[animations[0].name]
       if (firstAction) {
@@ -54,11 +71,7 @@ export default function CharizardScene() {
         style={{ background: 'transparent' }}
         frameloop="always"
       >
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[10, 10, 10]} intensity={1.8} color="#ff5500" />
-        <directionalLight position={[-10, 10, 10]} intensity={1.2} color="#ff3300" />
-        <pointLight position={[2, 4, 3]} intensity={5} decay={0} color="#ff4400" />
-        <pointLight position={[-3, 1, -2]} intensity={4} decay={0} color="#ff2200" />
+        <ambientLight intensity={1} />
         <Suspense fallback={null}>
           <Charizard />
         </Suspense>
