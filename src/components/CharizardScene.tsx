@@ -39,7 +39,6 @@ function Charizard() {
   return <primitive ref={ref} object={scene} scale={0.8} />
 }
 
-// Preload so the model is ready before the component mounts
 useGLTF.preload('/charizard/charizard.glb')
 
 export default function CharizardScene() {
@@ -53,15 +52,20 @@ export default function CharizardScene() {
     }}>
       <Canvas
         camera={{ position: [0, 2, 12], fov: 60 }}
-        gl={{ alpha: true, antialias: false, powerPreference: 'high-performance' }}
+        gl={{
+          alpha: true,
+          antialias: false,
+          powerPreference: 'high-performance',
+          // Disable ACES tone mapping — it washes out Charizard's orange to white
+          toneMapping: THREE.NoToneMapping,
+        }}
         style={{ background: 'transparent' }}
         frameloop="always"
       >
-        {/* Original lighting — warm orange, no material overrides */}
-        <ambientLight intensity={1.5} />
-        <directionalLight position={[0, 5, 10]} intensity={2.5} color="#ff8833" />
-        <pointLight position={[2, 4, 3]} intensity={10} decay={0} color="#ff7700" />
-        <pointLight position={[-3, 1, -2]} intensity={8} decay={0} color="#ff4400" />
+        {/* Moderate neutral-warm lights — no toneMapping means textures show true color */}
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[5, 10, 8]} intensity={1.2} color="#ffcc88" />
+        <pointLight position={[2, 4, 5]} intensity={4} decay={0} color="#ff8844" />
         <Suspense fallback={null}>
           <Charizard />
         </Suspense>
