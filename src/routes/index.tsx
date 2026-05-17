@@ -91,7 +91,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative z-10 flex justify-center md:justify-end mt-12 md:-mt-36 w-full max-w-[360px] md:max-w-none mx-auto pointer-events-auto">
+        <div className="relative z-10 flex justify-center md:justify-end mt-20 md:-mt-36 w-full max-w-[360px] md:max-w-none mx-auto pointer-events-auto">
           <DepthGlobe size={560} />
         </div>
       </section>
