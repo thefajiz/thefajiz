@@ -57,15 +57,14 @@ export default function CharizardScene() {
           antialias: false,
           powerPreference: 'high-performance',
           // Disable ACES tone mapping — it washes out Charizard's orange to white
-          toneMapping: THREE.NoToneMapping,
         }}
         style={{ background: 'transparent' }}
         frameloop="always"
       >
-        {/* Pure white lights to reveal original texture colors accurately */}
-        <ambientLight intensity={2.0} color="#ffffff" />
-        <directionalLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />
-        <directionalLight position={[-10, 5, -10]} intensity={0.5} color="#ffffff" />
+        {/* Moderate pure white lights to reveal original texture colors accurately without blowing out */}
+        <ambientLight intensity={1.0} color="#ffffff" />
+        <directionalLight position={[10, 10, 10]} intensity={1.0} color="#ffffff" />
+        <directionalLight position={[-10, 5, -10]} intensity={0.3} color="#ffffff" />
         <Suspense fallback={null}>
           <Charizard />
         </Suspense>
