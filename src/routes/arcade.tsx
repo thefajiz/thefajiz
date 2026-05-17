@@ -269,7 +269,10 @@ export default function Arcade() {
   };
 
   const handleShowLeaderboard = () => {
-    setGameState("leaderboard");
+    getLeaderboard().then((entries) => {
+      setLeaderboardEntries(entries);
+      setGameState("leaderboard");
+    });
   };
 
   const resetGame = () => {

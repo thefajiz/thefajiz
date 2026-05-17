@@ -9,19 +9,20 @@ function Charizard() {
   const { actions } = useAnimations(animations, ref)
   const t = useRef(0)
 
+  // Mutate existing materials in-place (no replacement = no loading race condition)
+  // Set roughness=1 metalness=0 so white lights show true texture colors
   useEffect(() => {
     scene.traverse((child: any) => {
       if (child.isMesh && child.material) {
-        const wasArray = Array.isArray(child.material)
-        const mats = wasArray ? child.material : [child.material]
-        const basics = mats.map((mat: any) => new THREE.MeshBasicMaterial({
-          map: mat.map ?? null,
-          color: mat.map ? 0xffffff : (mat.color ?? new THREE.Color(0xffffff)),
-          transparent: mat.transparent ?? false,
-          alphaMap: mat.alphaMap ?? null,
-          side: mat.side ?? THREE.FrontSide,
-        }))
-        child.material = wasArray ? basics : basics[0]
+        const mats = Array.isArray(child.material) ? child.material : [child.material]
+        mats.forEach((mat: any) => {
+          if (mat.isMeshStandardMaterial || mat.isMeshPhysicalMaterial) {
+            mat.roughness = 1
+            mat.metalness = 0
+            mat.envMapIntensity = 0
+          }
+          mat.needsUpdate = true
+        })
       }
     })
   }, [scene])
@@ -71,7 +72,10 @@ export default function CharizardScene() {
         style={{ background: 'transparent' }}
         frameloop="always"
       >
-        <ambientLight intensity={1} />
+        {/* Pure white neutral lights — no color tinting */}
+        <ambientLight intensity={2.5} color="#ffffff" />
+        <directionalLight position={[5, 10, 8]} intensity={1.5} color="#ffffff" />
+        <directionalLight position={[-5, 5, 8]} intensity={1} color="#ffffff" />
         <Suspense fallback={null}>
           <Charizard />
         </Suspense>
