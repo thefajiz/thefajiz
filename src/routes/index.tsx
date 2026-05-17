@@ -7,9 +7,9 @@ import { HeroArt, ArchwayArt } from "@/components/HeroArt";
 import DepthGlobe from "@/components/DepthGlobe";
 import { SocialRail } from "@/components/SocialRail";
 import { TornEdge } from "@/components/TornEdge";
-import { VOrnament } from "@/components/VOrnament";
 import LightRays from "@/components/LightRays";
 import LandingEntry from "@/components/LandingEntry";
+import { RetroReveal } from "@/components/RetroReveal";
 
 const projects = [
   { name: "v", tag: "mental health · ai chatbot", desc: "built to listen. for everyone who needed someone and found no one." },
@@ -83,12 +83,6 @@ export default function Home() {
           <p className="mt-8 max-w-md text-xs leading-loose tracking-widest-x text-ivory/80">
             a simple man, wanting a simple life, making differences.
           </p>
-          <Link
-            to="/work"
-            className="mt-10 inline-flex items-center gap-3 text-gold text-xs tracking-widest-x border-b border-gold pb-1"
-          >
-            explore my work <Star size={10} />
-          </Link>
         </div>
 
         <div className="relative z-10 flex justify-center md:justify-end mt-20 md:-mt-36 w-full max-w-[360px] md:max-w-none mx-auto pointer-events-auto">
@@ -96,7 +90,7 @@ export default function Home() {
         </div>
       </section>
 
-      <VOrnament />
+      <RetroReveal />
 
       {/* WORK PREVIEW */}
       <section className="px-6 md:px-12 py-16 max-w-6xl mx-auto">

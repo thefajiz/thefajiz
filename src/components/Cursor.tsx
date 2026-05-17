@@ -26,6 +26,7 @@ export function Cursor() {
 
   return (
     <div
+      id="global-cursor"
       style={{
         position: "fixed",
         left: 0,

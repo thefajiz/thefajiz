@@ -2,14 +2,23 @@ import { Layout } from "@/components/Layout";
 import CharizardScene from "@/components/CharizardScene";
 
 import { useEffect, useRef, useState } from "react";
-import g1 from "@/assets/gallery/faji_photo.jpg";
+import g1 from "@/assets/gallery/1.jpg";
 import g2 from "@/assets/gallery/2.jpeg";
-import g3 from "@/assets/gallery/5.jpeg";
+import g3 from "@/assets/gallery/3.jpeg";
 import g4 from "@/assets/gallery/4.jpeg";
-import g5 from "@/assets/gallery/3.jpeg";
-import g6 from "@/assets/gallery/bgg.jpeg";
+import g5 from "@/assets/gallery/5.jpeg";
+import g6 from "@/assets/gallery/6.jpeg";
+import g7 from "@/assets/gallery/7.jpeg";
+import g8 from "@/assets/gallery/8.jpeg";
+import g9 from "@/assets/gallery/9.jpeg";
+import g10 from "@/assets/gallery/10.jpeg";
+import g11 from "@/assets/gallery/11.jpeg";
+import g12 from "@/assets/gallery/12.jpeg";
+import g13 from "@/assets/gallery/13.jpeg";
+import g14 from "@/assets/gallery/14.jpeg";
+import g15 from "@/assets/gallery/15.jpeg";
 
-const gallery = [g1, g2, g3, g4, g5, g6];
+const gallery = [g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14, g15];
 
 // ── components ──────────────────────────────────────────────────────────────
 
@@ -135,7 +144,7 @@ export default function About() {
             display: flex;
             gap: 16px;
             width: max-content;
-            animation: galleryScroll 25s linear infinite;
+            animation: galleryScroll 45s linear infinite;
           }
           .gallery-ticker-content:hover {
             animation-play-state: paused;
