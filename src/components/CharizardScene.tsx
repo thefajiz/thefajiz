@@ -9,24 +9,6 @@ function Charizard() {
   const { actions } = useAnimations(animations, ref)
   const t = useRef(0)
 
-  // Mutate existing materials in-place (no replacement = no loading race condition)
-  // Set roughness=1 metalness=0 so white lights show true texture colors
-  useEffect(() => {
-    scene.traverse((child: any) => {
-      if (child.isMesh && child.material) {
-        const mats = Array.isArray(child.material) ? child.material : [child.material]
-        mats.forEach((mat: any) => {
-          if (mat.isMeshStandardMaterial || mat.isMeshPhysicalMaterial) {
-            mat.roughness = 1
-            mat.metalness = 0
-            mat.envMapIntensity = 0
-          }
-          mat.needsUpdate = true
-        })
-      }
-    })
-  }, [scene])
-
   useEffect(() => {
     if (actions && animations.length > 0) {
       const firstAction = actions[animations[0].name]
@@ -57,6 +39,9 @@ function Charizard() {
   return <primitive ref={ref} object={scene} scale={0.8} />
 }
 
+// Preload so the model is ready before the component mounts
+useGLTF.preload('/charizard/charizard.glb')
+
 export default function CharizardScene() {
   return (
     <div style={{
@@ -72,10 +57,11 @@ export default function CharizardScene() {
         style={{ background: 'transparent' }}
         frameloop="always"
       >
-        {/* Pure white neutral lights — no color tinting */}
-        <ambientLight intensity={2.5} color="#ffffff" />
-        <directionalLight position={[5, 10, 8]} intensity={1.5} color="#ffffff" />
-        <directionalLight position={[-5, 5, 8]} intensity={1} color="#ffffff" />
+        {/* Original lighting — warm orange, no material overrides */}
+        <ambientLight intensity={1.5} />
+        <directionalLight position={[0, 5, 10]} intensity={2.5} color="#ff8833" />
+        <pointLight position={[2, 4, 3]} intensity={10} decay={0} color="#ff7700" />
+        <pointLight position={[-3, 1, -2]} intensity={8} decay={0} color="#ff4400" />
         <Suspense fallback={null}>
           <Charizard />
         </Suspense>
