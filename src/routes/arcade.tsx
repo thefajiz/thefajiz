@@ -1,5 +1,5 @@
 /**
- * Home Page — Personal Quiz Game
+ * Home Page : Personal Quiz Game
  * Design: Synthwave Arcade Cabinet
  * Flow: Landing → Name Input → Briefing → Quiz Questions → Results → Leaderboard
  *
@@ -104,7 +104,7 @@ const quizData: QuizQuestion[] = [
     answer: "__TRICK_TIMEOUT__",
     isTrick: true,
     trickMessage:
-      "Haha! Trick question — I'm good at ALL of them! You should've just let the timer run out 😎",
+      "Haha! Trick question, I'm good at ALL of them! You should've just let the timer run out 😎",
   },
   {
     question: "What's my favorite shawarma place?",
@@ -125,7 +125,7 @@ const quizData: QuizQuestion[] = [
 
 type GameState = "idle" | "nameInput" | "briefing" | "playing" | "results" | "leaderboard";
 
-export default function Try() {
+export default function Arcade() {
   const [gameState, setGameState] = useState<GameState>("idle");
   const [playerName, setPlayerName] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -189,7 +189,7 @@ export default function Try() {
       playRetroSound("correct");
       setTrickPopup({
         show: true,
-        message: "Smart move! You didn't fall for the trick — I'm good at all of them! +1 point 🎉",
+        message: "Smart move! You didn't fall for the trick, I'm good at all of them! +1 point 🎉",
         type: "correct",
       });
       waitingForPopup.current = true;
@@ -316,32 +316,7 @@ export default function Try() {
               gameState={gameState === "idle" ? "idle" : gameState === "leaderboard" ? "idle" : "playing"}
             />
 
-            {gameState === "results" && (
-              <div className="fixed top-20 right-4 z-50 flex flex-col gap-2">
-                <button
-                  onClick={handleShowLeaderboard}
-                  className="px-4 py-2 font-bold rounded border-2 border-[#ff00ff] text-[#ff00ff] bg-[#0a0a0f] hover:bg-[#ff00ff] hover:text-white transition-all duration-200"
-                  style={{
-                    fontFamily: "'Press Start 2P', monospace",
-                    fontSize: "0.45rem",
-                    boxShadow: "0 0 10px #ff00ff, 0 0 20px #ff00ff40",
-                  }}
-                >
-                  VIEW LEADERBOARD
-                </button>
-                <button
-                  onClick={resetGame}
-                  className="px-4 py-2 font-bold rounded border-2 border-[#00ffff] text-[#00ffff] bg-[#0a0a0f] hover:bg-[#00ffff] hover:text-[#0a0015] transition-all duration-200"
-                  style={{
-                    fontFamily: "'Press Start 2P', monospace",
-                    fontSize: "0.45rem",
-                    boxShadow: "0 0 10px #00ffff40",
-                  }}
-                >
-                  HOME
-                </button>
-              </div>
-            )}
+
 
             <main className="flex-1 relative overflow-hidden">
               {/* Background hero image */}
@@ -360,7 +335,7 @@ export default function Try() {
               {/* Content */}
               <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 py-8">
                 <AnimatePresence mode="wait">
-                  {/* IDLE STATE — Landing */}
+                  {/* IDLE STATE : Landing */}
                   {gameState === "idle" && (
                     <motion.div
                       key="idle"
@@ -533,20 +508,34 @@ export default function Try() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -30 }}
                       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                      className="flex flex-col items-center gap-4 pt-4"
+                      className="flex flex-col items-center justify-start min-h-[calc(100vh-160px)] w-full max-w-xl py-6 gap-6 pt-8"
                     >
                       <h2
-                        className="text-lg md:text-xl neon-text-amber"
-                        style={{ fontFamily: "'Press Start 2P', monospace" }}
+                        className="text-2xl md:text-4xl font-bold neon-text-amber tracking-widest text-center mt-2"
+                        style={{ fontFamily: "'Press Start 2P', monospace", textShadow: "0 0 15px #fbe54f80" }}
                       >
                         GAME OVER
                       </h2>
-
+ 
                       <ResultsPrinter
                         score={score}
                         total={quizData.length}
                         show={gameState === "results"}
                       />
+
+                      <div className="flex justify-center z-50 w-full mt-2 mb-4">
+                        <button
+                          onClick={handleShowLeaderboard}
+                          className="px-8 py-4 font-bold rounded-lg border-2 border-[#ff00ff] text-[#ff00ff] bg-[#0a0a0f] hover:bg-[#ff00ff] hover:text-white transition-all duration-200 cursor-pointer"
+                          style={{
+                            fontFamily: "'Press Start 2P', monospace",
+                            fontSize: "0.65rem",
+                            boxShadow: "0 0 15px #ff00ff80, inset 0 0 10px #ff00ff40",
+                          }}
+                        >
+                          VIEW LEADERBOARD
+                        </button>
+                      </div>
                     </motion.div>
                   )}
 
@@ -563,7 +552,7 @@ export default function Try() {
                 </AnimatePresence>
               </div>
 
-              {/* Decorative arcade machine — bottom right */}
+              {/* Decorative arcade machine : bottom right */}
               <div className="hidden lg:block absolute bottom-0 right-0 w-48 opacity-30 pointer-events-none">
                 <img
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310519663662791301/PSmvNHNyTYQRBD2Us7ZtVW/neon-arcade-decoration-9PPSTAsiyYJ2sDyf7ojRYt.webp"

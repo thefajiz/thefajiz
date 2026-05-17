@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { label: "home",    to: "/" },
   { label: "about",   to: "/about" },
   { label: "work",    to: "/work" },
-  { label: "try", to: "/try" },
+  { label: "arcade",  to: "/arcade" },
   { label: "contact", to: "/contact" },
   { label: "resume",  to: "/resume" },
 ]
@@ -111,7 +111,7 @@ export default function LandingEntry({ onCollapsed }: Props) {
             background: "radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.12) 0%, transparent 65%)",
           }} />
 
-          {/* "thefajiz" — stays centered and large, fades out */}
+          {/* "thefajiz" : stays centered and large, fades out */}
           <motion.div
             style={{
               position: "absolute",
@@ -143,7 +143,7 @@ export default function LandingEntry({ onCollapsed }: Props) {
             </div>
           </motion.div>
 
-          {/* ANIMATED NAVBAR — slides DOWN from above */}
+          {/* ANIMATED NAVBAR : slides DOWN from above */}
           <motion.div
             style={{
               position: "absolute",
@@ -184,36 +184,53 @@ export default function LandingEntry({ onCollapsed }: Props) {
                 gap: "clamp(16px, 2.5vw, 40px)",
                 alignItems: "center",
               }}>
-                {NAV_LINKS.map((link, i) => (
-                  <motion.div
-                    key={link.to}
-                    initial={{ opacity: 0, x: 15 }}
-                    animate={isAnimating ? { opacity: 1, x: 0 } : { opacity: 0, x: 15 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: isAnimating ? 0.25 + i * 0.06 : 0,
-                      ease: "easeOut",
-                    }}
-                    onClick={() => {
-                      setPhase("exiting")
-                      if (link.to !== "/") navigate(link.to)
-                    }}
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.68rem",
-                      letterSpacing: "0.18em",
-                      color: "#f5f0e8",
-                      textTransform: "lowercase",
-                      cursor: "pointer",
-                      whiteSpace: "nowrap",
-                      transition: "color 0.2s",
-                    }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "#c9a84c"}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#f5f0e8"}
-                  >
-                    {link.label}
-                  </motion.div>
-                ))}
+                {NAV_LINKS.map((link, i) => {
+                  const isArcade = link.label === "arcade";
+                  return (
+                    <motion.div
+                      key={link.to}
+                      initial={{ opacity: 0, x: 15 }}
+                      animate={isAnimating ? { opacity: 1, x: 0 } : { opacity: 0, x: 15 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: isAnimating ? 0.25 + i * 0.06 : 0,
+                        ease: "easeOut",
+                      }}
+                      onClick={() => {
+                        setPhase("exiting")
+                        if (link.to !== "/") navigate(link.to)
+                      }}
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.68rem",
+                        letterSpacing: "0.18em",
+                        color: "#f5f0e8",
+                        textTransform: "lowercase",
+                        cursor: "pointer",
+                        whiteSpace: "nowrap",
+                        transition: "color 0.2s",
+                        ...(isArcade ? {
+                          background: "linear-gradient(90deg, #8b5cf6, #06b6d4)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          display: "inline-block"
+                        } : {})
+                      }}
+                      onMouseEnter={e => {
+                        if (!isArcade) {
+                          (e.currentTarget as HTMLElement).style.color = "#c9a84c";
+                        }
+                      }}
+                      onMouseLeave={e => {
+                        if (!isArcade) {
+                          (e.currentTarget as HTMLElement).style.color = "#f5f0e8";
+                        }
+                      }}
+                    >
+                      {link.label}
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Mobile Menu Icon */}

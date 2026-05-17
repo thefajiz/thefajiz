@@ -7,7 +7,7 @@ const links = [
   { to: "/", label: "home" },
   { to: "/about", label: "about" },
   { to: "/work", label: "work" },
-  { to: "/try", label: "try" },
+  { to: "/arcade", label: "arcade" },
   { to: "/contact", label: "contact" },
   { to: "/resume", label: "resume" },
 ] as const;
@@ -65,14 +65,36 @@ export function Nav({ isVisible = true }: { isVisible?: boolean }) {
         <nav className="hidden md:flex gap-10 text-xs tracking-widest-x">
           {links.map((l) => {
             const active = loc.pathname === l.to;
+            const isArcade = l.label === "arcade";
+            const gradientStyle = isArcade ? {
+              background: "linear-gradient(90deg, #8b5cf6, #06b6d4)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+              WebkitTextStroke: "0px"
+            } : undefined;
+
             return (
               <Link
                 key={l.to}
                 to={l.to}
                 className={`stroke-button${active ? " active-btn" : ""}`}
+                style={gradientStyle}
               >
                 {l.label}
-                <span className="hover-text" aria-hidden="true">{l.label}</span>
+                <span 
+                  className="hover-text" 
+                  aria-hidden="true"
+                  style={isArcade ? {
+                    background: "linear-gradient(90deg, #8b5cf6, #06b6d4)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    WebkitTextStroke: "0px",
+                    borderRightColor: "#06b6d4"
+                  } : undefined}
+                >
+                  {l.label}
+                </span>
               </Link>
             );
           })}
@@ -101,33 +123,47 @@ export function Nav({ isVisible = true }: { isVisible?: boolean }) {
             className="md:hidden overflow-hidden bg-[#0f0f0f] border-b border-[rgba(201,168,76,0.2)]"
           >
             <div className="flex flex-col">
-              {links.map((l, index) => (
-                <div key={l.to} className="flex flex-col">
-                  <Link
-                    to={l.to}
-                    onClick={() => setOpen(false)}
-                    className="px-6 py-4 lowercase"
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.75rem",
-                      letterSpacing: "0.2em",
-                      color: loc.pathname === l.to ? "#c9a84c" : "#f5f0e8",
-                      transition: "color 0.2s ease"
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#c9a84c")}
-                    onMouseLeave={(e) => {
-                      if (loc.pathname !== l.to) {
-                        e.currentTarget.style.color = "#f5f0e8";
-                      }
-                    }}
-                  >
-                    {l.label}
-                  </Link>
-                  {index < links.length - 1 && (
-                    <div style={{ height: "1px", background: "rgba(201,168,76,0.15)", width: "100%" }} />
-                  )}
-                </div>
-              ))}
+              {links.map((l, index) => {
+                const isArcade = l.label === "arcade";
+                const isCurrent = loc.pathname === l.to;
+                return (
+                  <div key={l.to} className="flex flex-col">
+                    <Link
+                      to={l.to}
+                      onClick={() => setOpen(false)}
+                      className="px-6 py-4 lowercase"
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.75rem",
+                        letterSpacing: "0.2em",
+                        color: isCurrent ? "#c9a84c" : "#f5f0e8",
+                        transition: "color 0.2s ease",
+                        ...(isArcade ? {
+                          background: "linear-gradient(90deg, #8b5cf6, #06b6d4)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          display: "inline-block"
+                        } : {})
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isArcade) {
+                          e.currentTarget.style.color = "#c9a84c";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isArcade && !isCurrent) {
+                          e.currentTarget.style.color = "#f5f0e8";
+                        }
+                      }}
+                    >
+                      {l.label}
+                    </Link>
+                    {index < links.length - 1 && (
+                      <div style={{ height: "1px", background: "rgba(201,168,76,0.15)", width: "100%" }} />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         )}

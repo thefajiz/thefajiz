@@ -81,8 +81,7 @@ export default function Home() {
           </h1>
           <div className="mt-8 w-px h-16 bg-gold/60" />
           <p className="mt-8 max-w-md text-xs leading-loose tracking-widest-x text-ivory/80">
-            atleti fan. just trying to be there for humans the way we're supposed to be.
-            cause we all need that someone who gets you.
+            a simple man, wanting a simple life, making differences.
           </p>
           <Link
             to="/work"
@@ -92,7 +91,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="relative z-10 flex justify-center md:justify-end -mt-24 md:-mt-36">
+        <div className="relative z-10 flex justify-center md:justify-end mt-12 md:-mt-36 w-full max-w-[360px] md:max-w-none mx-auto pointer-events-auto">
           <DepthGlobe size={560} />
         </div>
       </section>
@@ -101,7 +100,7 @@ export default function Home() {
 
       {/* WORK PREVIEW */}
       <section className="px-6 md:px-12 py-16 max-w-6xl mx-auto">
-        <p className="text-gold text-xs tracking-widest-x mb-12">selected work</p>
+        <p className="text-gold text-xs tracking-widest-x mb-12 text-center md:text-left">selected work</p>
         <div className="grid md:grid-cols-3 gap-6">
           {projects.map((p) => (
             <Link
@@ -124,7 +123,7 @@ export default function Home() {
         <TornEdge />
       </div>
 
-      {/* ABOUT STRIP — sits over torn paper */}
+      {/* ABOUT STRIP : sits over torn paper */}
       <section
         className="px-6 md:px-12 py-24 grid md:grid-cols-3 gap-10 items-center"
         style={{ background: "#f5f0e8", color: "#0a0a0a" }}
@@ -135,17 +134,19 @@ export default function Home() {
         <h2 className="font-serif text-center" style={{ fontSize: "clamp(1.6rem, 3vw, 2.5rem)", color: "#0a0a0a" }}>
           i build things, but i care more about why.
         </h2>
-        <div className="text-right">
-          <p className="font-serif text-xl leading-snug" style={{ color: "#7a5a14" }}>
+        <div className="text-center md:text-right">
+          <p className="font-serif text-xl leading-snug inline-block text-center md:text-right" style={{ color: "#7a5a14" }}>
             it is not<br />just what<br />it does.<br />it's who<br />it helps.
           </p>
-          <Link
-            to="/about"
-            className="inline-block mt-6 border-b pb-1 text-xs tracking-widest-x"
-            style={{ color: "#7a5a14", borderColor: "#7a5a14" }}
-          >
-            more about me →
-          </Link>
+          <div className="mt-6">
+            <Link
+              to="/about"
+              className="inline-block border-b pb-1 text-xs tracking-widest-x"
+              style={{ color: "#7a5a14", borderColor: "#7a5a14" }}
+            >
+              more about me →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -153,12 +154,12 @@ export default function Home() {
 
       {/* PRE-FOOTER: tagline + socials */}
       <section className="px-6 md:px-12 py-20 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-        <p className="font-serif text-ivory leading-snug" style={{ fontSize: "clamp(1.4rem, 2.6vw, 2.2rem)" }}>
+        <p className="font-serif text-ivory leading-snug text-center md:text-left" style={{ fontSize: "clamp(1.4rem, 2.6vw, 2.2rem)" }}>
           im better than any ai's and llms out there<br />
           and i use less water aswell,<br />
           <span className="text-gold">so hit me up.</span>
         </p>
-        <div className="flex md:justify-end">
+        <div className="flex justify-center md:justify-end">
           <SocialRail />
         </div>
           </section>

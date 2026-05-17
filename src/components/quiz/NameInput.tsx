@@ -1,6 +1,6 @@
 /**
  * NameInput Component
- * Design: Synthwave Arcade Cabinet — neon-styled name entry screen
+ * Design: Synthwave Arcade Cabinet : neon-styled name entry screen
  * Appears after clicking "INSERT COIN TO PLAY" and before the briefing
  */
 import { useState } from "react";

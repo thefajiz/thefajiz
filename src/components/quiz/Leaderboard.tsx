@@ -1,6 +1,6 @@
 /**
  * Leaderboard Component
- * Design: Synthwave Arcade Cabinet — neon-styled high score table
+ * Design: Synthwave Arcade Cabinet : neon-styled high score table
  * Persists scores in Supabase and auto-updates across all devices
  */
 

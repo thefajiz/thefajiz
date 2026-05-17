@@ -163,43 +163,71 @@
 }
 .loader-overlay.hide { opacity: 0; pointer-events: none; }
 
-.loading svg polyline {
-  fill: none;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.loading svg polyline#back {
-  fill: none;
-  stroke: #c9a84c33;
-}
-
-.loading svg polyline#front {
-  fill: none;
-  stroke: #c9a84c;
-  stroke-dasharray: 48, 144;
-  stroke-dashoffset: 192;
-  animation: dash_682 1.4s linear infinite;
-}
-
-@keyframes dash_682 {
-  72.5% {
-    opacity: 0;
+@keyframes bounce {
+  0%,
+  100% {
+    translate: 0px 36px;
   }
-
-  to {
-    stroke-dashoffset: 0;
+  50% {
+    translate: 0px 46px;
+  }
+}
+@keyframes bounce2 {
+  0%,
+  100% {
+    translate: 0px 46px;
+  }
+  50% {
+    translate: 0px 56px;
   }
 }
 
+@keyframes umbral {
+  0% {
+    stop-color: #d3a5102e;
+  }
+  50% {
+    stop-color: rgba(211, 165, 16, 0.519);
+  }
+  100% {
+    stop-color: #d3a5102e;
+  }
+}
+@keyframes partciles {
+  0%,
+  100% {
+    translate: 0px 16px;
+  }
+  50% {
+    translate: 0px 6px;
+  }
+}
+[id="particles"],
+#particles {
+  animation: partciles 4s ease-in-out infinite;
+}
+[id^="animatedStop"],
+#animatedStop {
+  animation: umbral 4s infinite;
+}
+#bounce {
+  animation: bounce 4s ease-in-out infinite;
+  translate: 0px 36px;
+}
+#bounce2 {
+  animation: bounce2 4s ease-in-out infinite;
+  translate: 0px 46px;
+  animation-delay: 0.5s;
+}
 
-/* stroke button — uiverse / satyamchaudharydev (adapted to gold) */
+
+/* stroke button : uiverse / satyamchaudharydev (adapted to gold) */
 .stroke-button {
   margin: 0;
   height: auto;
   background: transparent;
-  padding: 0;
+  padding: 0 4px 0 0;
+  text-indent: 12px;
   border: none;
   cursor: pointer;
   --border-right: 3px;
@@ -221,6 +249,8 @@
   color: var(--animation-color);
   width: 0%;
   inset: 0;
+  padding: 0 4px 0 0;
+  text-indent: 12px;
   border-right: var(--border-right) solid var(--animation-color);
   overflow: hidden;
   transition: 0.5s;

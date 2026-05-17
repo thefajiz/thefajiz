@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 /**
- * DepthGlobe — Integrated Portfolio Version
+ * DepthGlobe : Integrated Portfolio Version
  * Optimized for performance and stability.
  */
 

@@ -1,6 +1,6 @@
 /**
  * Synthwave Loader Component
- * Design: Synthwave Arcade Cabinet — retro car driving on neon grid road with sunset
+ * Design: Synthwave Arcade Cabinet : retro car driving on neon grid road with sunset
  * Adapted from Uiverse.io by BlackisPlay
  */
 import "./SynthwaveLoader.css";

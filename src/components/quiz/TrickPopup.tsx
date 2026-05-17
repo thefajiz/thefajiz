@@ -1,6 +1,6 @@
 /**
  * TrickPopup Component
- * Design: Synthwave Arcade Cabinet — neon popup for trick question feedback
+ * Design: Synthwave Arcade Cabinet : neon popup for trick question feedback
  */
 import { motion, AnimatePresence } from "framer-motion";
 import "./TrickPopup.css";

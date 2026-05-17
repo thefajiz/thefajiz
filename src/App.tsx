@@ -3,8 +3,10 @@ import Home from './routes/index'
 import About from './routes/about'
 import Work from './routes/work'
 import Contact from './routes/contact'
-import Try from './routes/try'
+import Arcade from './routes/arcade'
 import Resume from './routes/resume'
+import Privacy from './routes/privacy'
+import Terms from './routes/terms'
 import ScrollToTop from './components/ScrollToTop'
 
 export default function App() {
@@ -16,8 +18,10 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/work" element={<Work />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/try" element={<Try />} />
+        <Route path="/arcade" element={<Arcade />} />
         <Route path="/resume" element={<Resume />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         {/* Fallback for 404 */}
         <Route path="*" element={<Home />} />
       </Routes>

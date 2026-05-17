@@ -97,7 +97,7 @@ const seProjectCards = [
 
 const experienceEntries = [
   {
-    role: "alhekma international school — it administrator",
+    role: "alhekma international school : it administrator",
     company: "alhekma international school",
     location: "sanad, bahrain",
     period: "oct – dec 2025",
@@ -107,7 +107,7 @@ const experienceEntries = [
     ],
   },
   {
-    role: "al rabeeh medical group — it system administration intern",
+    role: "al rabeeh medical group : it system administration intern",
     company: "al rabeeh medical group",
     location: "bahrain",
     period: "may – sep 2025",
@@ -117,7 +117,7 @@ const experienceEntries = [
     ],
   },
   {
-    role: "bahrain asian youth games — it support team member",
+    role: "bahrain asian youth games : it support team member",
     company: "bahrain asian youth games",
     location: "khalifa sports city",
     period: "oct 2025",
@@ -126,7 +126,7 @@ const experienceEntries = [
     ],
   },
   {
-    role: "88 rent a car / ad dar media — admin it & digital support",
+    role: "88 rent a car / ad dar media : admin it & digital support",
     company: "88 rent a car / ad dar media",
     location: "bahrain",
     period: "",
@@ -387,7 +387,7 @@ export default function ResumePage() {
                         <ul className="space-y-3">
                           {card.items.map((item) => (
                             <li key={item} className="text-sm text-[#f5f0e8] flex items-center gap-3">
-                              <span className="text-[#c9a84c]">—</span>
+                              <span className="text-[#c9a84c]">:</span>
                               {item}
                             </li>
                           ))}

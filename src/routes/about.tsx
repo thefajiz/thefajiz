@@ -296,7 +296,7 @@ export default function About() {
               ].map((member, i) => (
                 <div key={i} className="name-grid-item">
                   <p className="serif text-2xl text-[#f5f0e8] tracking-[0.1em]">
-                    <span className="text-[#c9a84c] opacity-50 mr-2">—</span>
+                    <span className="text-[#c9a84c] opacity-50 mr-2">:</span>
                     {member.name}
                   </p>
                   <p className="text-[10px] text-[#888] tracking-[0.2em] mt-1 ml-6">{member.role}</p>
@@ -305,7 +305,7 @@ export default function About() {
             </div>
             <div className="mt-16 pt-8 border-t border-[#c9a84c1a] text-center">
               <p className="serif italic text-[#c9a84c] text-lg tracking-[0.1em]">
-                and kitty — the real head of the family. 🐾
+                and kitty, the real head of the family. 🐾
               </p>
             </div>
           </Reveal>
@@ -345,7 +345,7 @@ export default function About() {
               but i care more about why.
             </h2>
             <p className="text-[11px] tracking-[0.3em] text-[#888] mb-12">
-              thefajiz — somewhere between bahrain and kerala,<br />
+              thefajiz : somewhere between bahrain and kerala,<br />
               building things that matter.
             </p>
             <div className="text-[#c9a84c] opacity-40">✦</div>
